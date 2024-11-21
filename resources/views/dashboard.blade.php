@@ -413,10 +413,12 @@
 
 				</div><!-- /.box-body -->
 			</div> <!-- /.box -->
+        <div>
+</div>
 
 		@endif
 			
-    </div>
+</div>
     <div class="col-md-6">
 
         <!-- Categories -->
@@ -486,6 +488,237 @@
         </div> <!-- /.box -->
     </div>
 
+    <div class="col-md-6">
+
+        <!-- Software License Expiry -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h2 class="box-title">{{ trans('Software') }} {{ trans('License Expiry') }}</h2>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <x-icon type="minus" />
+                        <span class="sr-only">{{ trans('general.collapse') }}</span>
+                    </button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <canvas id="warrantyExpiryChart" width="400" height="200"></canvas>
+                        </div>
+                    </div> <!-- /.col -->
+                    <div class="text-center col-md-12" style="padding-top: 10px;">
+                        <a href="{{ route('licenses.index') }}" class="btn btn-primary btn-sm" style="width: 100%">{{ trans('general.viewall') }}</a>
+                    </div>
+                </div> <!-- /.row -->
+
+            </div><!-- /.box-body -->
+        </div> <!-- /.box -->
+    </div>
+
+    <div class="col-md-6">
+
+        <!-- Asset Age -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h2 class="box-title">{{ trans('general.asset') }} {{ trans('Age Analysis') }}</h2>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <x-icon type="minus" />
+                        <span class="sr-only">{{ trans('general.collapse') }}</span>
+                    </button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <canvas id="assetAgeChart" width="400" height="200"></canvas>
+                        </div> 
+                    </div> <!-- /.col -->
+                    <div class="text-center col-md-12" style="padding-top: 10px;">
+                        <a href="{{ route('hardware.index') }}?order=desc&sort=purchase_date" class="btn btn-primary btn-sm" style="width: 100%">{{ trans('general.viewall') }}</a>
+                    </div>
+                </div> <!-- /.row -->
+
+            </div><!-- /.box-body -->
+        </div> <!-- /.box -->
+    </div>
+
+    <div class="col-md-6">
+        <!-- License Utilization Rate -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h2 class="box-title">License Utilization Rate</h2>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <x-icon type="minus" />
+                        <span class="sr-only">{{ trans('general.collapse') }}</span>
+                    </button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table
+                                data-cookie-id-table="dashActivityReport"
+                                data-height="350"
+                                data-pagination="true"
+                                data-id-table="dashActivityReport"
+                                data-side-pagination="server"
+                                id="licenseUtilizationTable"
+                                class="table table-striped snipe-table"
+                                data-url="{{ route('api.licenses.utilization', ['sort' => 'utilization_rate', 'order' => 'asc']) }}?page=1&limit=20">                       
+                                <thead>
+                                    <tr>
+                                        <th class="col-sm-3" data-visible="true" data-field="name" data-formatter="categoriesLinkFormatter" data-sortable="true">{{ trans('general.name') }}</th>
+                                        <th class="col-sm-2" data-visible="true" data-field="manufacturer" data-sortable="true">{{ trans('general.manufacturer') }}</th>
+                                        <th class="col-sm-2" data-visible="true" data-field="seats" data-sortable="true">{{ trans('Seats') }}</th>
+                                        <th class="col-sm-2" data-visible="true" data-field="used" data-sortable="true">{{ trans('Used') }}</th>
+                                        <th class="col-sm-2" data-visible="true" data-field="available" data-sortable="true">{{ trans('Available') }}</th>
+                                        <th class="col-sm-2" data-visible="true" data-field="utilization_rate" data-sortable="true">{{ trans('Utilization rate') }}</th>
+                                        <th class="col-sm-2" data-visible="true" data-field="expiry_date" data-sortable="true">{{ trans('Expiry date') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> <!-- /.col -->
+                    <div class="text-center col-md-12" style="padding-top: 10px;">
+                        <a href="{{ route('licenses.index') }}" class="btn btn-primary btn-sm" style="width: 100%">{{ trans('general.viewall') }}</a>
+                    </div>
+                </div> <!-- /.row -->
+            </div><!-- /.box-body -->
+        </div> <!-- /.box -->
+    </div>
+
+    <div class="col-md-6">
+
+        <!-- departmental Software Allocation Chart -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h2 class="box-title">{{ trans('Departmental') }} {{ trans('Software Allocation') }}</h2>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <x-icon type="minus" />
+                        <span class="sr-only">{{ trans('general.collapse') }}</span>
+                    </button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <canvas id="departmentalSoftwareAllocationChart" width="400" height="200"></canvas>
+                        </div> 
+                    </div> <!-- /.col -->
+                    <div class="text-center col-md-12" style="padding-top: 10px;">
+                        <a href="{{ route('licenses.index') }}?order=desc&sort=purchase_date" class="btn btn-primary btn-sm" style="width: 100%">{{ trans('general.viewall') }}</a>
+                    </div>
+                </div> <!-- /.row -->
+
+            </div><!-- /.box-body -->
+        </div> <!-- /.box -->
+    </div>
+
+</div>
+
+
+
+
+
+
+<div>
+    <!-- Slicer -->
+    <div class="row">
+        <!-- Location Dropdown (Slicer) -->
+        <div class="col-lg-2 form-group">
+            <label for="locationSelect">Select Location</label>
+            <select id="locationSelect" class="form-control">
+                <option value="*">--Select Location--</option>
+                @foreach($locations as $location)
+                    <option value="{{ $location->id }}">{{ $location->name }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Charts Section -->
+
+        <div class="col-md-6">
+
+            <!-- Asset Tagging Status -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h2 class="box-title">{{ trans('Asset') }} {{ trans('Tagging Status') }}</h2>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <x-icon type="minus" />
+                            <span class="sr-only">{{ trans('general.collapse') }}</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <canvas id="assetTaggingChart" width="400" height="200"></canvas>
+                            </div>
+                        </div> <!-- /.col -->
+                    
+                    </div> <!-- /.row -->
+
+                </div><!-- /.box-body -->
+            </div> <!-- /.box -->
+        </div>
+
+
+
+        <div class="col-md-6">
+
+            <!-- Asset Status -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h2 class="box-title">{{ trans('Asset') }} {{ trans('Status') }}</h2>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <x-icon type="minus" />
+                            <span class="sr-only">{{ trans('general.collapse') }}</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <canvas id="assetStatusChart" width="400" height="200"></canvas>
+                            </div>
+                        </div> <!-- /.col -->
+                    
+                    </div> <!-- /.row -->
+
+                </div><!-- /.box-body -->
+            </div> <!-- /.box -->
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+    
 
 @endif
 
@@ -501,19 +734,150 @@
 
 
 <script nonce="{{ csrf_token() }}">
-    // ---------------------------
-    // - ASSET STATUS CHART -
-    // ---------------------------
-      var pieChartCanvas = $("#statusPieChart").get(0).getContext("2d");
-      var pieChart = new Chart(pieChartCanvas);
-      var ctx = document.getElementById("statusPieChart");
-      var pieOptions = {
-              legend: {
-                  position: 'top',
-                  responsive: true,
-                  maintainAspectRatio: true,
-              },
-              tooltips: {
+
+
+    var assetTaggingChart, assetStatusChart;
+
+    function fetchChartData(locationId) {
+        $.ajax({
+            url: '{{ route('api.dashboard.slicer') }}',
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            method: 'GET',
+            data: { location_id: locationId || '*' }, // Use '*' for all locations
+            success: function(response) {
+                updateCharts(response);
+            },
+            error: function() {
+                alert('Error fetching data');
+            }
+        });
+    }
+
+    function updateCharts(data) {
+        // Asset Tagging Status Chart
+        const assetTaggingCtx = document.getElementById('assetTaggingChart').getContext('2d');
+        const assetTaggingLabels = Object.keys(data.asset_tagging_status);
+        const assetTaggingData = Object.values(data.asset_tagging_status);
+
+        if (assetTaggingChart) {
+            // Update existing chart
+            assetTaggingChart.data.labels = assetTaggingLabels;
+            assetTaggingChart.data.datasets[0].data = assetTaggingData;
+            assetTaggingChart.update();
+        } else {
+            // Create new chart
+            assetTaggingChart = new Chart(assetTaggingCtx, {
+                type: 'pie',
+                data: {
+                    labels: assetTaggingLabels,
+                    datasets: [{
+                        data: assetTaggingData,
+                        backgroundColor: ['#4CAF50', '#FF5733', '#FFC300', '#D3D3D3'],
+                    }]
+                },
+                options: {
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((sum, val) => sum + val, 0);
+                                    const value = context.raw;
+                                    return `${context.label}: ${(value / total * 100).toFixed(2)}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+        // Update or Create Asset Status Chart
+        const assetStatusCtx = document.getElementById('assetStatusChart').getContext('2d');
+        const assetStatusLabels = Object.keys(data.asset_status);
+        const assetStatusData = Object.values(data.asset_status);
+
+        if (assetStatusChart) {
+            // Update existing chart
+            assetStatusChart.data.labels = assetStatusLabels;
+            assetStatusChart.data.datasets[0].data = assetStatusData;
+            assetStatusChart.update();
+        } else {
+            // Create new chart
+            assetStatusChart = new Chart(assetStatusCtx, {
+                type: 'bar',
+                data: {
+                    labels: assetStatusLabels,
+                    datasets: [{
+                        label: 'Asset Status',
+                        data: assetStatusData,
+                        backgroundColor: '#3498DB',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.raw} assets`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    $('#locationSelect').on('change', function() {
+        const locationId = $(this).val();
+        fetchChartData(locationId); // Fetch and update charts
+    });
+
+    // Fetch default data on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchChartData($('#locationSelect').val() || '*');
+    });
+
+    // Reusable function to create a chart
+    function createChart(chartId, type, labels, data, options, backgroundColors = null) {
+        const ctx = document.getElementById(chartId).getContext('2d');
+        new Chart(ctx, {
+            type: type,
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: options.datasetLabel || '',
+                    data: data,
+                    backgroundColor: backgroundColors || ['#36a2eb', '#ffcd56', '#ff6384', '#aace56', '#45ab29', '#8F00FF']
+                }]
+            },
+            options: options
+        });
+    }
+
+    // Pie Chart for Asset Status
+    document.addEventListener('DOMContentLoaded', function () {
+        var pieOptions = {
+            legend: {
+                position: 'top',
+                responsive: true,
+                maintainAspectRatio: true,
+            },
+            tooltips: {
                 callbacks: {
                     label: function(tooltipItem, data) {
                         counts = data.datasets[0].data;
@@ -522,36 +886,105 @@
                             total += counts[i];
                         }
                         prefix = data.labels[tooltipItem.index] || '';
-                        return prefix+" "+Math.round(counts[tooltipItem.index]/total*100)+"%";
+                        return prefix+": "+Math.round(counts[tooltipItem.index]/total*100)+"%";
                     }
                 }
-              }
-          };
+            }
+        };
 
-      $.ajax({
-          type: 'GET',
-          url: '{{ (\App\Models\Setting::getSettings()->dash_chart_type == 'name') ? route('api.statuslabels.assets.byname') : route('api.statuslabels.assets.bytype') }}',
-          headers: {
-              "X-Requested-With": 'XMLHttpRequest',
-              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
-          },
-          dataType: 'json',
-          success: function (data) {
-              var myPieChart = new Chart(ctx,{
-                  type   : 'pie',
-                  data   : data,
-                  options: pieOptions
-              });
-          },
-          error: function (data) {
-              // window.location.reload(true);
-          },
-      });
-        var last = document.getElementById('statusPieChart').clientWidth;
-        addEventListener('resize', function() {
-        var current = document.getElementById('statusPieChart').clientWidth;
-        if (current != last) location.reload();
-        last = current;
+
+        $.ajax({
+            type: 'GET',
+            url: '{{ (\App\Models\Setting::getSettings()->dash_chart_type == "name") ? route("api.statuslabels.assets.byname") : route("api.statuslabels.assets.bytype") }}',
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            dataType: 'json',
+            success: function (data) {
+                createChart('statusPieChart', 'pie', data.labels, data.datasets[0].data.map(x=>x*10), pieOptions);
+            }
+        });
+
+        let lastWidth = document.getElementById('statusPieChart').clientWidth;
+        window.addEventListener('resize', function () {
+            const currentWidth = document.getElementById('statusPieChart').clientWidth;
+            if (currentWidth !== lastWidth) location.reload();
+            lastWidth = currentWidth;
+        });
+    });
+
+    // Bar Chart for Warranty Expiry
+    document.addEventListener('DOMContentLoaded', function () {
+        const expiringData = @json($expiringSoon);
+        const labels = Object.keys(expiringData).map(key => `Expiring in ${key.replace('_', ' ')}`);
+        const data = Object.values(expiringData);
+
+        createChart('warrantyExpiryChart', 'bar', labels, data, {
+            datasetLabel: 'Software License Expiry',
+            chartOptions: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }
+            }
+        }, '#ff6666');
+    });
+
+    // Pie Chart for Asset Age Distribution
+    document.addEventListener('DOMContentLoaded', function () {
+        const ageDistribution = @json($ageDistribution);
+        const labels = Object.keys(ageDistribution).map(label => label.replace(/_/g, ' '));
+        const data = Object.values(ageDistribution);
+
+        createChart('assetAgeChart', 'pie', labels, data, {
+            datasetLabel: 'Asset Age Distribution',
+            chartOptions: {
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { enabled: true }
+                }
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const softwareAllocations = @json($softwareAllocation);
+        const labels = softwareAllocations.map(allocation => allocation.department);
+        const usedSeatsData = softwareAllocations.map(allocation => allocation.used_seats);
+        const totalSeatsData = softwareAllocations.map(allocation => allocation.total_seats);
+        const availableSeatsData = softwareAllocations.map(allocation => allocation.available_seats);
+
+        const tooltipTexts = softwareAllocations.map(allocation => {
+            return `Used: ${allocation.used_seats}\nAvailable: ${allocation.available_seats}\nTotal: ${allocation.total_seats}`;
+        });
+
+        var pieOptions = {
+            legend: {
+                position: 'top',
+                responsive: true,
+                maintainAspectRatio: true,
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        counts = data.datasets[0].data;
+                        total = 0;
+                        for(var i in counts) {
+                            total += counts[i];
+                        }
+                        prefix = data.labels[tooltipItem.index] || '';
+                        suffix = tooltipTexts[tooltipItem.index];
+                        return prefix+": "+ suffix;
+                    }
+                }
+            }
+        };
+
+        createChart('departmentalSoftwareAllocationChart', 'pie', labels, usedSeatsData, pieOptions);
     });
 </script>
 @endpush

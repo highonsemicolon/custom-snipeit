@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 
 Route::group(['prefix' => 'v1', 'middleware' => ['api', 'throttle:api']], function () {
 
@@ -644,9 +646,13 @@ Route::group(['prefix' => 'v1', 'middleware' => ['api', 'throttle:api']], functi
                 ->name('api.labels.index');
         });
 
+        Route::get('/dashboard-slicer', [DashboardController::class, 'getLocationWiseAssetData'])->name('api.dashboard.slicer');
         /**
          * Licenses API routes
         */
+
+        Route::get('/license-utilization', [DashboardController::class, 'getLicenseUtilization'])->name('api.licenses.utilization');
+
         Route::group(['prefix' => 'licenses'], function () {
 
         Route::get('selectlist',
